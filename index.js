@@ -34,5 +34,5 @@ app.listen(PORT, (err) => {
         console.log(err);
     }
     console.log("Server Started");
-    console.log("http://localhost:" + PORT);
+    console.log("http://localhost:" + PORT+"/login");
 });
