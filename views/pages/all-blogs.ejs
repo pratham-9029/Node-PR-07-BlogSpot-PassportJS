@@ -1,0 +1,100 @@
+<%- include('../partials/header.ejs') %>
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">All Blogs</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">All Blogs</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">Blog Posts</h5>
+                <a href="/admin/add-blog" class="btn btn-primary">
+                    <i class="mdi mdi-plus"></i> Add New Blog
+                </a>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <% if (blogs && blogs.length> 0) { %>
+                <div class="row">
+                    <% blogs.forEach((blog)=> { %>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <img class="card-img-top" src="/<%= blog.image %>" alt="<%= blog.title %>"
+                                    style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <p class="card-text text-muted">
+                                        <%= blog.description.length> 100 ? blog.description.substring(0, 100) + '...' :
+                                            blog.description %>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted text-uppercase">
+                                            <i class="mdi mdi-account"></i>
+                                            <%= blog.user.username %>
+                                        </small>
+                                        <small class="text-muted">
+                                            <i class="mdi mdi-calendar"></i>
+                                            <%= new Date(blog.date).toLocaleDateString('en-IN', { day: '2-digit' ,
+                                                month: 'short' , year: 'numeric' }) %>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white border-top d-flex justify-content-between">
+                                    <a href="/read-blog/<%= blog.id %>" class="btn btn-warning btn-sm">
+                                        <i class="mdi mdi-pencil"></i> Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <% } else { %>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body text-center py-5">
+                                    <i class="mdi mdi-note-text" style="font-size: 48px; color: #ccc;"></i>
+                                    <h5 class="mt-3 text-muted">No blogs found</h5>
+                                    <p class="text-muted">Start by creating your first blog post.</p>
+                                    <a href="/admin/add-blog" class="btn btn-primary">Create Blog</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                        <!-- ============================================================== -->
+                        <!-- End PAge Content -->
+                        <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <%- include('../partials/footer.ejs') %>
