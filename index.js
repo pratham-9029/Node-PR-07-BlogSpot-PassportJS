@@ -33,6 +33,6 @@ app.listen(PORT, (err) => {
     if (err) {
         console.log(err);
     }
-    console.log("Server Started");
+    console.log("Server Started at:");
     console.log("http://localhost:" + PORT+"/login");
 });
